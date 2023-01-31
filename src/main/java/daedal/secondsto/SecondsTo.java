@@ -37,6 +37,7 @@ public final class SecondsTo extends PlaceholderExpansion {
         LocalDateTime currentTime = LocalDateTime.now();
         int currentHour = currentTime.getHour();
         int currentMinute = currentTime.getMinute();
+        int currentSecond = currentTime.getSecond();
         List<String> toList = Arrays.asList(params.split(":"));
         int targetHour = Integer.parseInt(toList.get(0));
         int targetMinute = Integer.parseInt(toList.get(1));
@@ -50,6 +51,6 @@ public final class SecondsTo extends PlaceholderExpansion {
         long unixCurrent = currentTime.toEpochSecond(ZoneOffset.UTC);
         long unixTarget = targetTime.toEpochSecond(ZoneOffset.UTC);
         long diff = unixTarget - unixCurrent;
-        return diff + "s";
+        return diff-currentSecond + "s";
     }
 }
